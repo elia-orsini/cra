@@ -138,7 +138,7 @@ struct SharedBoostTests {
     }
 
     static let everyFieldSheet = """
-        html { filter: invert(1) hue-rotate(180deg) sepia(0.4) hue-rotate(178deg) saturate(1.8) contrast(1.2) brightness(0.9) saturate(1.1) !important; }
+        html { background-color: Canvas !important; filter: invert(1) hue-rotate(180deg) sepia(0.4) hue-rotate(178deg) saturate(1.8) contrast(1.2) brightness(0.9) saturate(1.1) !important; }
         img, video, picture, canvas, iframe, svg image { filter: invert(1) hue-rotate(180deg) !important; }
         body, body * { font-family: "Georgia", sans-serif !important; }
         html { zoom: 1.15 !important; }
