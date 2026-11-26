@@ -141,7 +141,10 @@ public struct Boost: Codable, Equatable, Identifiable, Sendable {
         if brightness != 50 { filters.append("brightness(\(fmt(brightness / 50)))") }
         if saturation != 50 { filters.append("saturate(\(fmt(saturation / 50)))") }
         if !filters.isEmpty {
-            rules.append("html { filter: \(filters.joined(separator: " ")) !important; }")
+            // A background propagated from body to the canvas is outside the filtered subtree:
+            // without this, inverted text would be white on the unchanged white canvas.
+            let background = invert ? "background-color: Canvas !important; " : ""
+            rules.append("html { \(background)filter: \(filters.joined(separator: " ")) !important; }")
             // Pictures and video keep their own colours under an inverted page.
             if invert { rules.append("img, video, picture, canvas, iframe, svg image { filter: invert(1) hue-rotate(180deg) !important; }") }
         }
